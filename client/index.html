@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#e94560">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>ממד המשפחה</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Onboarding -->
+  <div id="onboarding" class="onboarding" style="display:none;">
+    <h1>🛡️ ממד המשפחה</h1>
+    <p class="subtitle">מי אתה?</p>
+    <div class="member-grid">
+      <button class="member-btn" data-member="שי">שי</button>
+      <button class="member-btn" data-member="רוי">רוי</button>
+      <button class="member-btn" data-member="אמנון">אמנון</button>
+      <button class="member-btn" data-member="אורנה">אורנה</button>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="app" style="display:none;">
+
+    <!-- Header -->
+    <div class="header">
+      <span id="app-title" class="app-title">🛡️ ממד המשפחה</span>
+      <div class="user-info">
+        <span>שלום, <strong id="user-name"></strong></span>
+        <button id="switch-user" class="switch-user">החלף</button>
+      </div>
+    </div>
+
+    <!-- Dev Mode -->
+    <div id="dev-indicator" class="dev-indicator active">
+      <button id="dev-test-btn" class="dev-test-btn">🧪 שלח התרעת בדיקה</button>
+    </div>
+
+    <!-- Alert Banner -->
+    <div id="alert-banner" class="alert-banner">
+      <div id="alert-title" class="alert-title"></div>
+      <div id="alert-timer" class="alert-timer"></div>
+    </div>
+
+    <!-- No Alert -->
+    <div id="no-alert" class="no-alert">
+      ✅ אין התרעה פעילה כרגע
+    </div>
+
+    <!-- Action Buttons -->
+    <div id="action-buttons" class="action-buttons">
+      <button id="btn-coming" class="action-btn coming">✅ מגיע לממד</button>
+      <button id="btn-not-coming" class="action-btn not-coming">❌ לא מגיע לממד</button>
+    </div>
+
+    <!-- Family Status -->
+    <div class="family-panel">
+      <h2>סטטוס בני המשפחה</h2>
+      <div id="family-list"></div>
+    </div>
+
+    <!-- Connection Status -->
+    <div id="connection-status" class="connection-status">מתחבר...</div>
+
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

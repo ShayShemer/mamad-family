@@ -1,0 +1,15 @@
+{
+  "name": "mamad-family-server",
+  "version": "1.0.0",
+  "description": "Family shelter coordination server for Israeli missile alerts",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "web-push": "^3.6.6",
+    "ws": "^8.16.0"
+  }
+}

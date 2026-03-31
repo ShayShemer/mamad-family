@@ -1,0 +1,329 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #1a1a2e;
+  --surface: #16213e;
+  --surface-light: #0f3460;
+  --accent: #e94560;
+  --green: #27ae60;
+  --red: #e74c3c;
+  --grey: #7f8c8d;
+  --text: #ecf0f1;
+  --text-dim: #95a5a6;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Onboarding Screen --- */
+.onboarding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 2rem;
+  text-align: center;
+}
+
+.onboarding h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.onboarding .subtitle {
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.onboarding .member-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.onboarding .member-btn {
+  background: var(--surface-light);
+  color: var(--text);
+  border: 3px solid transparent;
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.onboarding .member-btn:active {
+  transform: scale(0.95);
+  border-color: var(--accent);
+}
+
+/* --- Main App --- */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Header */
+.header {
+  background: var(--surface);
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--surface-light);
+}
+
+.header .app-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.header .user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.header .switch-user {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0.25rem;
+}
+
+/* Alert Banner */
+.alert-banner {
+  display: none;
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  padding: 1rem 1.25rem;
+  text-align: center;
+  animation: pulse-bg 1.5s ease-in-out infinite;
+}
+
+.alert-banner.active {
+  display: block;
+}
+
+.alert-banner .alert-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.alert-banner .alert-timer {
+  font-size: 1.1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes pulse-bg {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+/* No Alert Message */
+.no-alert {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-dim);
+  font-size: 1.2rem;
+}
+
+.no-alert.hidden {
+  display: none;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem 1.25rem;
+}
+
+.action-buttons.active {
+  display: flex;
+}
+
+.action-btn {
+  border: none;
+  border-radius: 16px;
+  padding: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.7;
+  color: white;
+}
+
+.action-btn:active {
+  transform: scale(0.97);
+}
+
+.action-btn.coming {
+  background: var(--green);
+}
+
+.action-btn.not-coming {
+  background: var(--red);
+}
+
+.action-btn.selected {
+  opacity: 1;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4);
+  transform: scale(1.02);
+}
+
+.action-btn:not(.selected) {
+  opacity: 0.45;
+}
+
+/* When no selection yet, both are semi-visible */
+.action-buttons:not(.has-selection) .action-btn {
+  opacity: 0.7;
+}
+
+/* Family Status Panel */
+.family-panel {
+  padding: 1rem 1.25rem;
+  flex: 1;
+}
+
+.family-panel h2 {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--surface-light);
+}
+
+.member-status {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.5rem;
+  background: var(--surface);
+  border-radius: 12px;
+  border-right: 5px solid var(--grey);
+  transition: all 0.3s;
+}
+
+.member-status.status-coming {
+  border-right-color: var(--green);
+  background: rgba(39, 174, 96, 0.1);
+}
+
+.member-status.status-not-coming {
+  border-right-color: var(--red);
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.member-status .member-name {
+  font-size: 1.15rem;
+  font-weight: bold;
+  flex: 1;
+}
+
+.member-status .member-badge {
+  font-size: 0.9rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.member-status.status-none .member-badge {
+  background: rgba(127, 140, 141, 0.2);
+  color: var(--grey);
+}
+
+.member-status.status-coming .member-badge {
+  background: rgba(39, 174, 96, 0.2);
+  color: var(--green);
+}
+
+.member-status.status-not-coming .member-badge {
+  background: rgba(231, 76, 60, 0.2);
+  color: var(--red);
+}
+
+/* Connection status */
+.connection-status {
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.connection-status.disconnected {
+  background: rgba(231, 76, 60, 0.2);
+  color: var(--red);
+}
+
+/* Dev mode indicator */
+.dev-indicator {
+  display: none;
+  text-align: center;
+  padding: 0.5rem;
+  background: rgba(241, 196, 15, 0.2);
+  color: #f1c40f;
+  font-size: 0.8rem;
+}
+
+.dev-indicator.active {
+  display: block;
+}
+
+.dev-test-btn {
+  background: #f39c12;
+  color: #1a1a2e;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.25rem;
+}
+
+/* Responsive */
+@media (min-width: 600px) {
+  .app {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .onboarding {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
