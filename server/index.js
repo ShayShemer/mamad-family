@@ -14,8 +14,8 @@ const PORT = process.env.PORT || 3000;
 
 // --- VAPID Keys ---
 // Generate once: npx web-push generate-vapid-keys
-const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY || 'BNq1WuEBMKBMnr4R2x9Gx6XPa6HCQQ3TqV9zMqfEoJv2SGyb4P8GxjAKeMV3hRXiJakqFiGMExyL9fxqDgFxGE';
-const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY || 'your-private-key-here';
+const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY || 'BDOx7ZsgCZUg6vHUVxFFq-quzIcE6jfTKQOuOwvzo7sfxCxYLX247h8mUuvyEXLSovCvVE2cIgx8nlUiPZSLWFA';
+const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY || 'w2SO64O6EMxYnwyIXtGRnGVl4IAxcMrsomOFhR_nUWo';
 
 try {
   webpush.setVapidDetails(
