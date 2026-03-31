@@ -253,11 +253,16 @@ function sendStatus(status) {
 function playAlertSound() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    // Android default notification: three-note chime (like "Tethys")
+    // Android notification chime — played twice for emphasis
     const notes = [
-      { freq: 783.99, start: 0, dur: 0.18 },      // G5
-      { freq: 1046.50, start: 0.2, dur: 0.18 },    // C6
-      { freq: 987.77, start: 0.4, dur: 0.25 }      // B5
+      // First chime
+      { freq: 783.99, start: 0, dur: 0.22 },       // G5
+      { freq: 1046.50, start: 0.25, dur: 0.22 },   // C6
+      { freq: 987.77, start: 0.50, dur: 0.30 },    // B5
+      // Pause, then second chime
+      { freq: 783.99, start: 1.0, dur: 0.22 },     // G5
+      { freq: 1046.50, start: 1.25, dur: 0.22 },   // C6
+      { freq: 987.77, start: 1.50, dur: 0.30 },    // B5
     ];
     for (const note of notes) {
       const osc = ctx.createOscillator();
@@ -271,6 +276,10 @@ function playAlertSound() {
       gain.connect(ctx.destination);
       osc.start(ctx.currentTime + note.start);
       osc.stop(ctx.currentTime + note.start + note.dur + 0.05);
+    }
+    // Vibrate pattern: buzz, pause, buzz (works on Android)
+    if (navigator.vibrate) {
+      navigator.vibrate([300, 200, 300, 200, 300]);
     }
   } catch (e) {
     console.warn('Could not play alert sound:', e);
